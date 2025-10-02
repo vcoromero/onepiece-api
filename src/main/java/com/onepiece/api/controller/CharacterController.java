@@ -70,14 +70,14 @@ public class CharacterController {
         return ResponseEntity.ok(characters);
     }
     
-    // GET /api/characters/crew/{crewId} - Buscar por tripulación
+    // GET /api/characters/crew/{crewId} - Search by crew
     @GetMapping("/crew/{crewId}")
     public ResponseEntity<List<Character>> getCharactersByCrew(@PathVariable Integer crewId) {
         List<Character> characters = characterService.getCharactersByCrew(crewId);
         return ResponseEntity.ok(characters);
     }
     
-    // GET /api/characters/crew-name/{crewName} - Buscar por nombre de tripulación
+    // GET /api/characters/crew-name/{crewName} - Search by crew name
     @GetMapping("/crew-name/{crewName}")
     public ResponseEntity<List<Character>> getCharactersByCrewName(@PathVariable String crewName) {
         List<Character> characters = characterService.getCharactersByCrewName(crewName);
@@ -128,7 +128,7 @@ public class CharacterController {
         return ResponseEntity.ok(characters);
     }
     
-    // POST /api/characters/{id}/assign-crew/{crewId} - Asignar tripulación
+    // POST /api/characters/{id}/assign-crew/{crewId} - Assign crew
     @PostMapping("/{id}/assign-crew/{crewId}")
     public ResponseEntity<Character> assignCrewToCharacter(@PathVariable Integer id, @PathVariable Integer crewId) {
         Character character = characterService.assignCrewToCharacter(id, crewId);

@@ -27,22 +27,22 @@ public class CharacterService {
     @Autowired
     private DevilFruitRepository devilFruitRepository;
     
-    // Obtener todos los personajes
+    // Get all characters
     public List<Character> getAllCharacters() {
         return characterRepository.findAll();
     }
     
-    // Obtener personaje por ID
+    // Get character by ID
     public Optional<Character> getCharacterById(Integer id) {
         return characterRepository.findById(id);
     }
     
-    // Crear nuevo personaje
+    // Create new character
     public Character createCharacter(Character character) {
         return characterRepository.save(character);
     }
     
-    // Actualizar personaje
+    // Update character
     public Character updateCharacter(Integer id, Character characterDetails) {
         Optional<Character> optionalCharacter = characterRepository.findById(id);
         if (optionalCharacter.isPresent()) {
@@ -55,7 +55,7 @@ public class CharacterService {
         return null;
     }
     
-    // Eliminar personaje
+    // Delete character
     public boolean deleteCharacter(Integer id) {
         Optional<Character> character = characterRepository.findById(id);
         if (character.isPresent()) {
@@ -65,52 +65,52 @@ public class CharacterService {
         return false;
     }
     
-    // Buscar personajes por nombre
+    // Search characters by name
     public List<Character> searchCharactersByName(String name) {
         return characterRepository.findByNameContainingIgnoreCase(name);
     }
     
-    // Buscar personajes por tripulación
+    // Search characters by crew
     public List<Character> getCharactersByCrew(Integer crewId) {
         return characterRepository.findByCrewId(crewId);
     }
     
-    // Buscar personajes por nombre de tripulación
+    // Search characters by crew name
     public List<Character> getCharactersByCrewName(String crewName) {
         return characterRepository.findByCrewName(crewName);
     }
     
-    // Buscar personajes por rango de recompensa
+    // Search characters by bounty range
     public List<Character> getCharactersByBountyRange(BigDecimal minBounty, BigDecimal maxBounty) {
         return characterRepository.findByBountyBetween(minBounty, maxBounty);
     }
     
-    // Buscar personajes con recompensa mayor a un valor
+    // Search characters with bounty greater than a value
     public List<Character> getCharactersWithBountyGreaterThan(BigDecimal bounty) {
         return characterRepository.findByBountyGreaterThan(bounty);
     }
     
-    // Buscar personajes sin recompensa
+    // Search characters without bounty
     public List<Character> getCharactersWithoutBounty() {
         return characterRepository.findByBountyIsNull();
     }
     
-    // Buscar personajes por fruta del diablo
+    // Search characters by devil fruit
     public List<Character> searchCharactersByDevilFruit(String devilFruitName) {
         return characterRepository.findByDevilFruitNameContaining(devilFruitName);
     }
     
-    // Buscar personajes por tipo de fruta del diablo
+    // Search characters by devil fruit type
     public List<Character> getCharactersByDevilFruitType(String typeName) {
         return characterRepository.findByDevilFruitType(typeName);
     }
     
-    // Obtener personajes ordenados por recompensa
+    // Get characters ordered by bounty
     public List<Character> getCharactersOrderedByBounty() {
         return characterRepository.findAllOrderByBountyDesc();
     }
     
-    // Asignar tripulación a personaje
+    // Assign crew to character
     public Character assignCrewToCharacter(Integer characterId, Integer crewId) {
         Optional<Character> characterOpt = characterRepository.findById(characterId);
         Optional<Crew> crewOpt = crewRepository.findById(crewId);
@@ -123,7 +123,7 @@ public class CharacterService {
         return null;
     }
     
-    // Asignar fruta del diablo a personaje
+    // Assign devil fruit to character
     public Character assignDevilFruitToCharacter(Integer characterId, Integer fruitId) {
         Optional<Character> characterOpt = characterRepository.findById(characterId);
         Optional<DevilFruit> fruitOpt = devilFruitRepository.findById(fruitId);
@@ -137,7 +137,7 @@ public class CharacterService {
         return null;
     }
     
-    // Remover fruta del diablo de personaje
+    // Remove devil fruit from character
     public Character removeDevilFruitFromCharacter(Integer characterId, Integer fruitId) {
         Optional<Character> characterOpt = characterRepository.findById(characterId);
         Optional<DevilFruit> fruitOpt = devilFruitRepository.findById(fruitId);

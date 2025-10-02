@@ -8,7 +8,7 @@ class OnepieceApiApplicationTests {
 
     @Test
     void contextLoads() {
-        // Test básico para verificar que el contexto de Spring se carga correctamente
+        // Basic test to verify that Spring context loads correctly
     }
 
 }

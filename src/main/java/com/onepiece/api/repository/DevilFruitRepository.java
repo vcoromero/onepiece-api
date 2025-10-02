@@ -12,29 +12,29 @@ import java.util.Optional;
 @Repository
 public interface DevilFruitRepository extends JpaRepository<DevilFruit, Integer> {
     
-    // Buscar por nombre (case insensitive)
+    // Search by name (case insensitive)
     List<DevilFruit> findByNameContainingIgnoreCase(String name);
     
-    // Buscar por nombre exacto
+    // Search by exact name
     Optional<DevilFruit> findByName(String name);
     
-    // Buscar por tipo
+    // Search by type
     List<DevilFruit> findByTypeId(Integer typeId);
     
-    // Buscar por nombre de tipo
+    // Search by type name
     List<DevilFruit> findByTypeName(String typeName);
     
-    // Buscar frutas con descripción
+    // Search fruits with description
     List<DevilFruit> findByDescriptionIsNotNull();
     
-    // Buscar frutas sin descripción
+    // Search fruits without description
     List<DevilFruit> findByDescriptionIsNull();
     
-    // Query personalizada para buscar frutas por descripción
+    // Custom query to search fruits by description
     @Query("SELECT df FROM DevilFruit df WHERE df.description LIKE %:description%")
     List<DevilFruit> findByDescriptionContaining(@Param("description") String description);
     
-    // Query para obtener frutas más populares (con más usuarios)
+    // Query to get most popular fruits (with most users)
     @Query("SELECT df FROM DevilFruit df LEFT JOIN df.characters ch GROUP BY df.id ORDER BY COUNT(ch.id) DESC")
     List<DevilFruit> findAllOrderByUserCount();
 }

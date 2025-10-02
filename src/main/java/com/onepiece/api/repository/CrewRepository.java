@@ -12,20 +12,20 @@ import java.util.Optional;
 @Repository
 public interface CrewRepository extends JpaRepository<Crew, Integer> {
     
-    // Buscar por nombre (case insensitive)
+    // Search by name (case insensitive)
     List<Crew> findByNameContainingIgnoreCase(String name);
     
-    // Buscar por nombre exacto
+    // Search by exact name
     Optional<Crew> findByName(String name);
     
-    // Buscar por barco
+    // Search by ship
     List<Crew> findByShipContainingIgnoreCase(String ship);
     
-    // Query personalizada para obtener tripulaciones con más miembros
+    // Custom query to get crews with most members
     @Query("SELECT c FROM Crew c LEFT JOIN c.characters ch GROUP BY c.id ORDER BY COUNT(ch.id) DESC")
     List<Crew> findAllOrderByMemberCount();
     
-    // Query para obtener tripulaciones con un número mínimo de miembros
+    // Query to get crews with a minimum number of members
     @Query("SELECT c FROM Crew c LEFT JOIN c.characters ch GROUP BY c.id HAVING COUNT(ch.id) >= :minMembers")
     List<Crew> findByMinMemberCount(@Param("minMembers") Long minMembers);
 }

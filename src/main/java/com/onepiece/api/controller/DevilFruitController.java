@@ -89,21 +89,21 @@ public class DevilFruitController {
         return ResponseEntity.ok(devilFruits);
     }
     
-    // GET /api/devil-fruits/with-description - Buscar frutas con descripción
+    // GET /api/devil-fruits/with-description - Search fruits with description
     @GetMapping("/with-description")
     public ResponseEntity<List<DevilFruit>> getDevilFruitsWithDescription() {
         List<DevilFruit> devilFruits = devilFruitRepository.findByDescriptionIsNotNull();
         return ResponseEntity.ok(devilFruits);
     }
     
-    // GET /api/devil-fruits/without-description - Buscar frutas sin descripción
+    // GET /api/devil-fruits/without-description - Search fruits without description
     @GetMapping("/without-description")
     public ResponseEntity<List<DevilFruit>> getDevilFruitsWithoutDescription() {
         List<DevilFruit> devilFruits = devilFruitRepository.findByDescriptionIsNull();
         return ResponseEntity.ok(devilFruits);
     }
     
-    // GET /api/devil-fruits/ordered-by-users - Obtener frutas ordenadas por número de usuarios
+    // GET /api/devil-fruits/ordered-by-users - Get fruits ordered by number of users
     @GetMapping("/ordered-by-users")
     public ResponseEntity<List<DevilFruit>> getDevilFruitsOrderedByUserCount() {
         List<DevilFruit> devilFruits = devilFruitRepository.findAllOrderByUserCount();

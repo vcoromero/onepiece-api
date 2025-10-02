@@ -26,7 +26,7 @@ public class CrewController {
         return ResponseEntity.ok(crews);
     }
     
-    // GET /api/crews/{id} - Obtener tripulación por ID
+    // GET /api/crews/{id} - Get crew by ID
     @GetMapping("/{id}")
     public ResponseEntity<Crew> getCrewById(@PathVariable Integer id) {
         Optional<Crew> crew = crewRepository.findById(id);
@@ -34,14 +34,14 @@ public class CrewController {
                   .orElse(ResponseEntity.notFound().build());
     }
     
-    // POST /api/crews - Crear nueva tripulación
+    // POST /api/crews - Create new crew
     @PostMapping
     public ResponseEntity<Crew> createCrew(@Valid @RequestBody Crew crew) {
         Crew savedCrew = crewRepository.save(crew);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedCrew);
     }
     
-    // PUT /api/crews/{id} - Actualizar tripulación
+    // PUT /api/crews/{id} - Update crew
     @PutMapping("/{id}")
     public ResponseEntity<Crew> updateCrew(@PathVariable Integer id, 
                                          @Valid @RequestBody Crew crewDetails) {
@@ -56,7 +56,7 @@ public class CrewController {
         return ResponseEntity.notFound().build();
     }
     
-    // DELETE /api/crews/{id} - Eliminar tripulación
+    // DELETE /api/crews/{id} - Delete crew
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCrew(@PathVariable Integer id) {
         Optional<Crew> crew = crewRepository.findById(id);
@@ -81,7 +81,7 @@ public class CrewController {
         return ResponseEntity.ok(crews);
     }
     
-    // GET /api/crews/ordered-by-members - Obtener tripulaciones ordenadas por número de miembros
+    // GET /api/crews/ordered-by-members - Get crews ordered by number of members
     @GetMapping("/ordered-by-members")
     public ResponseEntity<List<Crew>> getCrewsOrderedByMemberCount() {
         List<Crew> crews = crewRepository.findAllOrderByMemberCount();

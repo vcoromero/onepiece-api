@@ -13,43 +13,43 @@ import java.util.Optional;
 @Repository
 public interface CharacterRepository extends JpaRepository<Character, Integer> {
     
-    // Buscar por nombre (case insensitive)
+    // Search by name (case insensitive)
     List<Character> findByNameContainingIgnoreCase(String name);
     
-    // Buscar por nombre exacto
+    // Search by exact name
     Optional<Character> findByName(String name);
     
-    // Buscar por tripulación
+    // Search by crew
     List<Character> findByCrewId(Integer crewId);
     
-    // Buscar por nombre de tripulación
+    // Search by crew name
     List<Character> findByCrewName(String crewName);
     
-    // Buscar por rango de recompensa
+    // Search by bounty range
     List<Character> findByBountyBetween(BigDecimal minBounty, BigDecimal maxBounty);
     
-    // Buscar personajes con recompensa mayor a un valor
+    // Search characters with bounty greater than a value
     List<Character> findByBountyGreaterThan(BigDecimal bounty);
     
-    // Buscar personajes con recompensa menor a un valor
+    // Search characters with bounty less than a value
     List<Character> findByBountyLessThan(BigDecimal bounty);
     
-    // Buscar personajes sin recompensa
+    // Search characters without bounty
     List<Character> findByBountyIsNull();
     
-    // Query personalizada para buscar personajes con frutas del diablo
+    // Custom query to search characters with devil fruits
     @Query("SELECT DISTINCT c FROM Character c JOIN c.devilFruits df WHERE df.name LIKE %:fruitName%")
     List<Character> findByDevilFruitNameContaining(@Param("fruitName") String fruitName);
     
-    // Query para buscar personajes con frutas de un tipo específico
+    // Query to search characters with fruits of a specific type
     @Query("SELECT DISTINCT c FROM Character c JOIN c.devilFruits df WHERE df.type.name = :typeName")
     List<Character> findByDevilFruitType(@Param("typeName") String typeName);
     
-    // Query para obtener personajes ordenados por recompensa (descendente)
+    // Query to get characters ordered by bounty (descending)
     @Query("SELECT c FROM Character c WHERE c.bounty IS NOT NULL ORDER BY c.bounty DESC")
     List<Character> findAllOrderByBountyDesc();
     
-    // Query para obtener el top N personajes con mayor recompensa
+    // Query to get top N characters with highest bounty
     @Query("SELECT c FROM Character c WHERE c.bounty IS NOT NULL ORDER BY c.bounty DESC")
     List<Character> findTopByBountyOrderByBountyDesc();
 }
