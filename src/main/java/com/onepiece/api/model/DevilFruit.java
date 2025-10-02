@@ -15,7 +15,7 @@ public class DevilFruit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-    @NotBlank(message = "El nombre de la fruta es obligatorio")
+    @NotBlank(message = "Devil fruit name is mandatory")
     @Column(nullable = false, length = 100, unique = true)
     private String name;
     
@@ -31,7 +31,7 @@ public class DevilFruit {
     @JsonIgnore
     private Set<Character> characters = new HashSet<>();
     
-    // Constructores
+    // Constructors
     public DevilFruit() {}
     
     public DevilFruit(String name, DevilFruitType type) {
@@ -45,7 +45,7 @@ public class DevilFruit {
         this.description = description;
     }
     
-    // Getters y Setters
+    // Getters and Setters
     public Integer getId() {
         return id;
     }
@@ -86,7 +86,7 @@ public class DevilFruit {
         this.characters = characters;
     }
     
-    // Métodos de utilidad
+    // Utility methods
     public void addCharacter(Character character) {
         this.characters.add(character);
         character.getDevilFruits().add(this);

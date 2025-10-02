@@ -14,7 +14,7 @@ public class Crew {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-    @NotBlank(message = "El nombre de la tripulación es obligatorio")
+    @NotBlank(message = "Crew name is mandatory")
     @Column(nullable = false, length = 100, unique = true)
     private String name;
     
@@ -25,7 +25,7 @@ public class Crew {
     @JsonManagedReference
     private Set<Character> characters = new HashSet<>();
     
-    // Constructores
+    // Constructors
     public Crew() {}
     
     public Crew(String name) {
@@ -37,7 +37,7 @@ public class Crew {
         this.ship = ship;
     }
     
-    // Getters y Setters
+    // Getters and Setters
     public Integer getId() {
         return id;
     }
@@ -70,7 +70,7 @@ public class Crew {
         this.characters = characters;
     }
     
-    // Métodos de utilidad
+    // Utility methods
     public void addCharacter(Character character) {
         this.characters.add(character);
         character.setCrew(this);

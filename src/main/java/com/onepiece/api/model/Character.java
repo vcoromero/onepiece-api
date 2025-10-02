@@ -17,11 +17,11 @@ public class Character {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-    @NotBlank(message = "El nombre es obligatorio")
+    @NotBlank(message = "Name is mandatory")
     @Column(nullable = false, length = 100)
     private String name;
     
-    @DecimalMin(value = "0.0", message = "La recompensa debe ser positiva")
+    @DecimalMin(value = "0.0", message = "Bounty must be positive")
     @Column(precision = 15, scale = 2)
     private BigDecimal bounty;
     
@@ -39,7 +39,7 @@ public class Character {
     @JsonIgnore
     private Set<DevilFruit> devilFruits = new HashSet<>();
     
-    // Constructores
+    // Constructors
     public Character() {}
     
     public Character(String name, BigDecimal bounty) {
@@ -53,7 +53,7 @@ public class Character {
         this.crew = crew;
     }
     
-    // Getters y Setters
+    // Getters and Setters
     public Integer getId() {
         return id;
     }
@@ -94,7 +94,7 @@ public class Character {
         this.devilFruits = devilFruits;
     }
     
-    // Métodos de utilidad
+    // Utility methods
     public void addDevilFruit(DevilFruit devilFruit) {
         this.devilFruits.add(devilFruit);
         devilFruit.getCharacters().add(this);
