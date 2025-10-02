@@ -13,14 +13,16 @@ public class HomeController {
     @GetMapping("/")
     public Map<String, Object> home() {
         Map<String, Object> response = new HashMap<>();
-        response.put("message", "¡Bienvenido a la One Piece API!");
-        response.put("description", "API para gestionar personajes del mundo de One Piece");
+        response.put("message", "Welcome to the One Piece API!");
+        response.put("description", "API to manage the characters of the One Piece world");
         response.put("version", "1.0.0");
         response.put("timestamp", LocalDateTime.now());
         response.put("endpoints", Map.of(
             "characters", "/api/characters",
-            "health", "/actuator/health",
-            "info", "/actuator/info"
+            "crews", "/api/crews",
+            "devil-fruits", "/api/devil-fruits",
+            "devil-fruit-types", "/api/devil-fruit-types",
+            "health", "/health"
         ));
         return response;
     }
